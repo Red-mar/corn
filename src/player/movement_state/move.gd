@@ -7,7 +7,7 @@ func enter(_args):
 	owner.get_node("AnimatedSprite").frame = frame
 	
 func update(_delta):
-	owner.direction = Input.get_vector("move_left", "move_right", "move_up", "move_down")
+	#owner.direction = Input.get_vector("move_left", "move_right", "move_up", "move_down")
 	if owner.direction.x > 0: owner.direction.x = 1
 	elif owner.direction.x < 0: owner.direction.x = -1
 	
@@ -29,6 +29,14 @@ func update_animation():
 	owner.get_node("AnimatedSprite").flip_h = !(owner.velocity.x < 0)
 	
 func handle_input(event):
+	if event.is_action_pressed("move_left"):
+		owner.direction.x = -1
+	if event.is_action_released("move_left"):
+		owner.direction.x = 0
+	if event.is_action_pressed("move_right"):
+		owner.direction.x = 1
+	if event.is_action_released("move_right"):
+		owner.direction.x = 0
 	if Input.is_action_pressed("move_down") and event.is_action_pressed("jump"):
 		owner.position.y += 1
 		emit_signal("finished", "fall")

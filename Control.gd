@@ -109,3 +109,7 @@ func _on_UIInventory_context_menu(item: ItemData, at_position: Vector2):
 
 func _on_journal_pressed():
 	quest.visible = !quest.visible
+
+
+func _on_TouchScreenButton2_pressed():
+	pass

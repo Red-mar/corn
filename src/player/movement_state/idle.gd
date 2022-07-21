@@ -6,7 +6,7 @@ func enter(args):
 	#should_fall()
 
 func update(_delta):
-	owner.direction = Input.get_vector("move_left", "move_right", "move_up", "move_down")
+	#owner.direction = Input.get_vector("move_left", "move_right", "move_up", "move_down")
 	update_state(owner.direction)
 		
 func update_state(direction):
@@ -18,6 +18,12 @@ func update_state(direction):
 		emit_signal("finished", "move")
 	
 func handle_input(event):
+	if event.is_action("move_left"):
+		owner.direction.x = -1
+		update_state(owner.direction)
+	elif event.is_action("move_right"):
+		owner.direction.x = 1
+		update_state(owner.direction)
 	if Input.is_action_pressed("move_down") and event.is_action_pressed("jump"):
 		owner.position.y += 1
 		emit_signal("finished", "fall")
@@ -25,6 +31,8 @@ func handle_input(event):
 		emit_signal("finished", "jump")
 	elif event.is_action_pressed("pickup"):
 		owner.pickup()
+	elif event.is_action_pressed("move_up"):
+		owner.port()
 	elif event.is_action_pressed("attack"):
 		emit_signal("finished", "attack")
 	.handle_input(event)
