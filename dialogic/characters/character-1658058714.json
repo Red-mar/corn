@@ -1,0 +1,21 @@
+{
+	"color": "#ff00ff28",
+	"description": "",
+	"display_name": "",
+	"display_name_bool": false,
+	"id": "character-1658058714.json",
+	"mirror_portraits": false,
+	"name": "John the Farmer",
+	"nickname": "",
+	"nickname_bool": false,
+	"offset_x": 0,
+	"offset_y": 0,
+	"portraits": [
+		{
+			"name": "Default",
+			"path": "res://src/npc/graphics/john/frame0000.webp"
+		}
+	],
+	"scale": 200,
+	"theme": ""
+}

@@ -1,0 +1,104 @@
+{
+	"files": [
+
+	],
+	"folders": {
+		"Characters": {
+			"files": [
+				"character-1658057540.json",
+				"character-1658058714.json"
+			],
+			"folders": {
+
+			},
+			"metadata": {
+				"color": null,
+				"folded": false
+			}
+		},
+		"Definitions": {
+			"files": [
+				"1658069669-323"
+			],
+			"folders": {
+				"quests": {
+					"files": [
+
+					],
+					"folders": {
+						"sheep": {
+							"files": [
+								"1658307931-970",
+								"1658394866-648"
+							],
+							"folders": {
+
+							},
+							"metadata": {
+								"color": null,
+								"folded": false
+							}
+						}
+					},
+					"metadata": {
+						"color": null,
+						"folded": false
+					}
+				}
+			},
+			"metadata": {
+				"color": null,
+				"folded": false
+			}
+		},
+		"Themes": {
+			"files": [
+				"default-theme.cfg"
+			],
+			"folders": {
+
+			},
+			"metadata": {
+				"color": null,
+				"folded": false
+			}
+		},
+		"Timelines": {
+			"files": [
+				"timeline-1658057639.json"
+			],
+			"folders": {
+				"quests": {
+					"files": [
+
+					],
+					"folders": {
+						"sheep": {
+							"files": [
+								"timeline-1658307250.json",
+								"timeline-1658393072.json",
+								"timeline-1658393127.json",
+								"timeline-1658393134.json"
+							],
+							"folders": {
+
+							},
+							"metadata": {
+								"color": null,
+								"folded": false
+							}
+						}
+					},
+					"metadata": {
+						"color": null,
+						"folded": false
+					}
+				}
+			},
+			"metadata": {
+				"color": null,
+				"folded": false
+			}
+		}
+	}
+}

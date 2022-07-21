@@ -1,0 +1,15 @@
+{
+	"events": [
+		{
+			"character": "character-1658058714.json",
+			"event_id": "dialogic_001",
+			"portrait": "",
+			"text": "Thanks again for getting the wool."
+		}
+	],
+	"metadata": {
+		"dialogic-version": "1.4.3",
+		"file": "timeline-1658393134.json",
+		"name": "completed"
+	}
+}

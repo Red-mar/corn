@@ -1,0 +1,28 @@
+[gd_resource type="Resource" load_steps=7 format=2]
+
+[ext_resource path="res://src/resources/NPCData.gd" type="Script" id=1]
+[ext_resource path="res://src/npc/graphics/john/frame0003.webp" type="Texture" id=2]
+[ext_resource path="res://src/npc/graphics/john/frame0001.webp" type="Texture" id=3]
+[ext_resource path="res://src/npc/graphics/john/frame0000.webp" type="Texture" id=4]
+[ext_resource path="res://src/npc/graphics/john/frame0002.webp" type="Texture" id=5]
+
+[sub_resource type="SpriteFrames" id=1]
+animations = [ {
+"frames": [ ExtResource( 4 ) ],
+"loop": true,
+"name": "idle",
+"speed": 10.0
+}, {
+"frames": [ ExtResource( 4 ), ExtResource( 3 ), ExtResource( 5 ), ExtResource( 2 ) ],
+"loop": true,
+"name": "blink",
+"speed": 5.0
+} ]
+
+[resource]
+script = ExtResource( 1 )
+unique_id = "john"
+display_name = "John the farmer"
+description = "A peculiar fellow."
+animation = SubResource( 1 )
+moves = false

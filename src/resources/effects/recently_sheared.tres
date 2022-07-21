@@ -1,0 +1,28 @@
+[gd_resource type="Resource" load_steps=3 format=2]
+
+[ext_resource path="res://src/resources/EffectData.gd" type="Script" id=1]
+[ext_resource path="res://src/player/port_particle.tscn" type="PackedScene" id=2]
+
+[resource]
+script = ExtResource( 1 )
+unique_id = "recently_sheared"
+display_name = "Recently sheared"
+description = "This sheep was recently sheared."
+duration = 10.0
+interval = 10.0
+health = 0
+mana = 0
+max_health = 0
+strength = 0
+drop_item = ""
+usable_mob = {
+}
+usable_npc = {
+}
+usable_item = {
+}
+usable_effect = {
+"shears": false
+}
+particles = ExtResource( 2 )
+chain_effect = ""

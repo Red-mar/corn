@@ -1,0 +1,25 @@
+{
+	"glossary": [
+
+	],
+	"variables": [
+		{
+			"id": "1658307931-970",
+			"name": "sheep",
+			"type": 0,
+			"value": "0"
+		},
+		{
+			"id": "1658394866-648",
+			"name": "wool",
+			"type": 0,
+			"value": "0"
+		},
+		{
+			"id": "1658069669-323",
+			"name": "coin",
+			"type": 0,
+			"value": "false"
+		}
+	]
+}
