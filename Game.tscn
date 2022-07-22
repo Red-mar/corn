@@ -218,6 +218,7 @@ collision_mask = 51
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 pause_mode = 2
 stream = ExtResource( 7 )
+volume_db = -5.951
 autoplay = true
 
 [connection signal="port_request" from="player" to="." method="_on_player_port_request"]
