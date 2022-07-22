@@ -18,4 +18,4 @@ display_name = "Spinner"
 description = "Spinner"
 timeline = "spinner"
 animation = SubResource( 1 )
-moves = true
+moves = false
