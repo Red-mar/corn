@@ -19,4 +19,4 @@ func _on_SpawnTimer_timeout():
 		owner.add_child(_mob)
 		_mob.global_position = cast.get_collision_point() - (_mob._col.shape.extents + Vector2(0, -10) / 2) + Vector2(randi()%200, 0)
 
-	timer.start(rand_range(5, 30))
+	timer.start(rand_range(10, 40))

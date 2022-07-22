@@ -7,21 +7,20 @@ export var run_speed := 200.0
 export var level := 1
 export var experience := 0
 
-var renown = 0
+var renown := 0
 
-export var max_strength := 5
-var strength = max_strength
+export var max_strength := 4
+export var strength := 4
 
-export var max_dexterity := 5
-var dexterity = max_dexterity
+export var max_dexterity := 4
+export var dexterity := 4
 
-export var max_intellect := 5
-var intellect = max_intellect
+export var max_intellect := 4
+export var intellect := 4
 
-export var max_stamina := 5
-var stamina = max_stamina
+export var max_stamina := 4
+export var stamina := 4
 
-var max_health = stamina * 10
-var health: float = max_health
-
-var mana = intellect * 10
+export var health := 50
+export var max_health := 50
+export var mana := 10

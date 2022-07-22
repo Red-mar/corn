@@ -129,6 +129,16 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://src/resources/QuestData.gd"
 }, {
+"base": "Resource",
+"class": "ShopData",
+"language": "GDScript",
+"path": "res://src/resources/ShopData.gd"
+}, {
+"base": "Resource",
+"class": "ShopOfferData",
+"language": "GDScript",
+"path": "res://src/resources/ShopOfferData.gd"
+}, {
 "base": "Panel",
 "class": "UIItem",
 "language": "GDScript",
@@ -169,6 +179,8 @@ _global_script_class_icons={
 "Port": "",
 "PortParticle": "",
 "QuestData": "",
+"ShopData": "",
+"ShopOfferData": "",
 "UIItem": "",
 "WorldCharacter": "",
 "WorldItem": ""
@@ -182,11 +194,7 @@ config/icon="res://icon.png"
 
 [autoload]
 
-ItemDatabase="*res://src/autoloads/ItemDatabase.gd"
-MobDatabase="*res://src/autoloads/MobDatabase.gd"
-EffectDatabase="*res://src/autoloads/EffectDatabase.gd"
-NpcDatabase="*res://src/autoloads/NPCDatabase.gd"
-QuestDatabase="*res://src/autoloads/QuestDatabase.gd"
+Database="*res://src/autoloads/Database.gd"
 
 [display]
 
@@ -212,6 +220,22 @@ ui_accept={
 , Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":32,"physical_scancode":0,"unicode":0,"echo":false,"script":null)
 , Object(InputEventJoypadButton,"resource_local_to_scene":false,"resource_name":"","device":0,"button_index":0,"pressure":0.0,"pressed":false,"script":null)
  ]
+}
+ui_left={
+"deadzone": 0.5,
+"events": [  ]
+}
+ui_right={
+"deadzone": 0.5,
+"events": [  ]
+}
+ui_up={
+"deadzone": 0.5,
+"events": [  ]
+}
+ui_down={
+"deadzone": 0.5,
+"events": [  ]
 }
 move_left={
 "deadzone": 0.5,

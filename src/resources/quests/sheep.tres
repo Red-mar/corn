@@ -7,6 +7,7 @@ script = ExtResource( 1 )
 unique_id = "sheep"
 display_name = "Sheep shearer"
 description = "The sheep need to be sheared."
+renown = 1
 state = 0
 current_progress = 0
 progress = [ "Sheep shearing", "Finishing up" ]

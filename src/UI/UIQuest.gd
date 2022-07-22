@@ -9,8 +9,8 @@ onready var quest_list = $PanelContainer/QuestTab/Vbox/MarginContainer3/QuestLis
 
 func _ready():
 	var i = 0
-	for q in QuestDatabase.QUESTS:
-		var q_data = QuestDatabase.get_quest_data(q)
+	for q in Database.QUESTS:
+		var q_data = Database.get_quest_data(q)
 		quest_list.add_item(q_data.display_name)
 		quest_list.set_item_metadata(i, q_data.unique_id)
 		i += 1

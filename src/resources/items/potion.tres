@@ -24,6 +24,7 @@ script = ExtResource( 1 )
 unique_id = "potion"
 display_name = "Potion"
 description = "Wont to heal."
+value = 5
 stackable = false
 consumable = true
 icon = ExtResource( 9 )

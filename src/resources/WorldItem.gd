@@ -14,7 +14,7 @@ var velocity = Vector2.ZERO
 onready var GRAVITY = ProjectSettings.get_setting("physics/2d/default_gravity")
 
 func _ready():
-	_item = ItemDatabase.get_item_data(unique_id)
+	_item = Database.get_item_data(unique_id)
 	name = _item.display_name
 	description = _item.description
 	if _item.animation:

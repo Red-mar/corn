@@ -26,7 +26,7 @@ func _update_items_displayed() -> void:
 	for i in range(0, inventory.max_items):
 		var item = inventory.items[i]
 		if item:
-			var item_data = ItemDatabase.get_item_data(item["unique_id"])
+			var item_data = Database.get_item_data(item["unique_id"])
 			set_item_icon(i, item_data.icon)
 			set_item_metadata(i, item["unique_id"])
 			if item["amount"] > 1:
@@ -41,7 +41,7 @@ func _swap_item(from: int, to: int):
 
 func _on_ItemList_item_rmb_selected(index, at_position):
 	if inventory.items[index] == null: return
-	var item = ItemDatabase.get_item_data(inventory.items[index]["unique_id"])
+	var item = Database.get_item_data(inventory.items[index]["unique_id"])
 	item.position = index
 	emit_signal("context_menu", item, get_global_mouse_position())
 

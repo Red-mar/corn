@@ -17,8 +17,10 @@ export var health := 0
 export var mana := 0
 
 # Adjustments stats
-export var max_health := 0
-export var strength := 0
+export var strength_scaling := 1
+export var dexterity_scaling := 1
+export var intellect_scaling := 1
+export var variability := 1
 
 export var drop_item: String
 
@@ -29,8 +31,6 @@ export(Dictionary) var usable_item
 export(Dictionary) var usable_effect
 
 export(PackedScene) var particles
-
-export(Script) var custom
 
 # Effect triggered after this one
 export var chain_effect := ""

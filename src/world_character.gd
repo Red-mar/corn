@@ -3,7 +3,7 @@ extends KinematicBody2D
 
 var description = ""
 
-var stats: Character = Character.new()
+var stats: Character
 
 const KNOCKBACK := Vector2(500, -500)
 const DRAG_FACTOR := 0.15
@@ -30,7 +30,7 @@ func base_physics(delta):
 func stagger() -> void:
 	pass
 
-func add_effect(effect_id: String):
+func add_effect(effect_id: String, caster):
 	if effects.has(effect_id):
 		effects[effect_id] += 1
 	else:
@@ -38,6 +38,7 @@ func add_effect(effect_id: String):
 
 	var effect = _effect_scene.instance()
 	effect.unique_effect_id = effect_id
+	effect.caster = caster
 	add_child(effect)
 	
 func remove_effect(effect_id: String):
@@ -52,7 +53,7 @@ func di(value):
 	var di_d = _di_scene.duplicate()
 	get_parent().get_parent().add_child(di_d)
 	di_d.position = position + Vector2(0, -50)
-	di_d.label.text = str(value)
+	di_d.label.text = str(abs(value))
 	if value > 0:
 		di_d.label.self_modulate = Color(0, 1, 0, 1)
 	else:

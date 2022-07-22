@@ -21,8 +21,9 @@ animations = [ {
 [resource]
 script = ExtResource( 1 )
 unique_id = "coin"
-display_name = "コイン"
+display_name = "Coin"
 description = "A shiny coin."
+value = 1
 stackable = true
 consumable = false
 icon = ExtResource( 3 )

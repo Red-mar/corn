@@ -16,6 +16,7 @@ script = ExtResource( 1 )
 unique_id = "wool"
 display_name = "Wool"
 description = "Unspun wool."
+value = 1
 stackable = false
 consumable = false
 icon = ExtResource( 2 )

@@ -12,14 +12,14 @@ onready var _col = $CollisionShape2D
 
 var original_scale = scale
 
-var loot_table = ["wool", "wool", "wool", "wool"]
+var loot_table = ["coin", "coin", "coin", "potion"]
 
 func _ready():
 	_hitbox.collision_mask = 0
 	_hitbox.collision_layer = 0
 	collision_layer = 0
-	stats.run_speed = 100
-	var mob_data = MobDatabase.get_mob_data(unique_id)
+	var mob_data = Database.get_mob_data(unique_id)
+	stats = mob_data.stats.duplicate()
 	_sprite.frames = mob_data.animation
 	display_name = mob_data.display_name
 	description = mob_data.description
@@ -30,9 +30,10 @@ func _ready():
 func _change_direction():
 	direction = Vector2(randi()%3-1, 0)
 
-func damage(effect_id = "damage", from = Vector2.ZERO):
-	$movement_state._change_state("stagger", {"from": from})
-	add_effect(effect_id)
+func damage(effect_id, from):
+	$movement_state._change_state("stagger", {"from": from.position})
+	add_effect(effect_id, from)
+	print(stats.health)
 	if stats.health == 0:
 		kill()
 
@@ -53,14 +54,11 @@ func _on_hitbox_body_shape_entered(body_rid, body, body_shape_index, local_shape
 		body.stagger()
 
 func drop_item(loot):
-	get_parent().get_parent().spawn_item(loot, global_position, 10)
+	get_parent().get_parent().spawn_item(loot, global_position, 1)
 
 func _on_AnimationPlayer_animation_finished(anim_name):
 	if anim_name == "death":
 		var loot = randi() % 4
-		drop_item(loot_table[loot])
-		drop_item(loot_table[loot])
-		drop_item(loot_table[loot])
 		drop_item(loot_table[loot])
 		queue_free()
 		

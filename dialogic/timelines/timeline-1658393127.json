@@ -3,7 +3,7 @@
 		{
 			"call_node": {
 				"arguments": [
-					"wool"
+					"ball_of_wool"
 				],
 				"method_name": "check_item",
 				"target_node_path": "game"
@@ -17,12 +17,12 @@
 
 			],
 			"portrait": "",
-			"question": "Do you have the wool? Remember I asked for 10 of them."
+			"question": "Do you have the balls of wool? Remember I asked for 10 of them."
 		},
 		{
 			"choice": "Yep! Here they are.",
 			"condition": ">=",
-			"definition": "1658394866-648",
+			"definition": "1658497372-787",
 			"event_id": "dialogic_011",
 			"value": "10"
 		},
@@ -45,7 +45,7 @@
 		{
 			"call_node": {
 				"arguments": [
-					"wool",
+					"ball_of_wool",
 					"10"
 				],
 				"method_name": "remove_item",

@@ -17,7 +17,7 @@ func _init():
 	items.resize(max_items)
 
 func add_item(unique_id: String, amount := 1) -> bool:
-	var stackable = ItemDatabase.get_item_data(unique_id).stackable
+	var stackable = Database.get_item_data(unique_id).stackable
 	var no_free_space = false
 	if not stackable:
 		no_free_space = _count() + amount > max_items
@@ -88,8 +88,10 @@ func get_position(item_unique_id: String) -> int:
 func get_id(index: int):
 	return items[index]["unique_id"]
 
-func remove_item(index: int, amount := -1) -> String:
+func remove_item(index: int, amount := -1) -> bool:
 	var item = items[index]
+	if not item: return false
+	if items[index]["amount"] < amount: return false
 	if amount == -1:
 		items[index]["amount"] = 0
 	else:
@@ -97,4 +99,4 @@ func remove_item(index: int, amount := -1) -> String:
 	if items[index]["amount"] <= 0:
 		items[index] = null
 	emit_changed()
-	return item
+	return true

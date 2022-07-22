@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://src/player/player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://src/level/level.tscn" type="PackedScene" id=2]
@@ -9,6 +9,7 @@
 [ext_resource path="res://test3-mega.ogg" type="AudioStream" id=7]
 [ext_resource path="res://src/UI/UIQuest.tscn" type="PackedScene" id=8]
 [ext_resource path="res://icon.png" type="Texture" id=9]
+[ext_resource path="res://src/UI/TradeUI.tscn" type="PackedScene" id=10]
 
 [sub_resource type="CircleShape2D" id=2]
 radius = 63.0
@@ -30,7 +31,7 @@ script = ExtResource( 3 )
 [node name="level" parent="." instance=ExtResource( 2 )]
 
 [node name="player" parent="." instance=ExtResource( 1 )]
-position = Vector2( 734, 323 )
+position = Vector2( -354, 391 )
 
 [node name="UI" type="CanvasLayer" parent="."]
 
@@ -40,8 +41,16 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 mouse_filter = 1
 script = ExtResource( 6 )
+__meta__ = {
+"_edit_lock_": true
+}
 
-[node name="TouchScreenButton" type="TouchScreenButton" parent="UI/Control"]
+[node name="tsb" type="Control" parent="UI/Control"]
+visible = false
+margin_right = 40.0
+margin_bottom = 40.0
+
+[node name="TouchScreenButton" type="TouchScreenButton" parent="UI/Control/tsb"]
 position = Vector2( 1159, 666 )
 scale = Vector2( 2.04688, 1.84375 )
 normal = ExtResource( 9 )
@@ -51,7 +60,7 @@ passby_press = true
 action = "move_right"
 visibility_mode = 1
 
-[node name="TouchScreenButton6" type="TouchScreenButton" parent="UI/Control"]
+[node name="TouchScreenButton6" type="TouchScreenButton" parent="UI/Control/tsb"]
 position = Vector2( 139, 245 )
 scale = Vector2( 2.04688, 1.84375 )
 normal = ExtResource( 9 )
@@ -61,7 +70,7 @@ passby_press = true
 action = "pickup"
 visibility_mode = 1
 
-[node name="TouchScreenButton4" type="TouchScreenButton" parent="UI/Control"]
+[node name="TouchScreenButton4" type="TouchScreenButton" parent="UI/Control/tsb"]
 position = Vector2( 609, 466 )
 scale = Vector2( 2.04688, 1.84375 )
 normal = ExtResource( 9 )
@@ -71,7 +80,7 @@ passby_press = true
 action = "move_up"
 visibility_mode = 1
 
-[node name="TouchScreenButton2" type="TouchScreenButton" parent="UI/Control"]
+[node name="TouchScreenButton2" type="TouchScreenButton" parent="UI/Control/tsb"]
 position = Vector2( 95, 690 )
 scale = Vector2( 1.6875, 1.67188 )
 normal = ExtResource( 9 )
@@ -81,7 +90,7 @@ passby_press = true
 action = "move_left"
 visibility_mode = 1
 
-[node name="TouchScreenButton3" type="TouchScreenButton" parent="UI/Control"]
+[node name="TouchScreenButton3" type="TouchScreenButton" parent="UI/Control/tsb"]
 position = Vector2( 622, 722 )
 scale = Vector2( 1.6875, 1.67188 )
 normal = ExtResource( 9 )
@@ -91,7 +100,7 @@ passby_press = true
 action = "jump"
 visibility_mode = 1
 
-[node name="TouchScreenButton5" type="TouchScreenButton" parent="UI/Control"]
+[node name="TouchScreenButton5" type="TouchScreenButton" parent="UI/Control/tsb"]
 position = Vector2( 626, 899 )
 scale = Vector2( 1.6875, 1.67188 )
 normal = ExtResource( 9 )
@@ -106,6 +115,9 @@ visible = false
 self_modulate = Color( 0, 0, 0, 0.341176 )
 anchor_right = 1.0
 anchor_bottom = 1.0
+
+[node name="TradeUI" parent="UI/Control" instance=ExtResource( 10 )]
+visible = false
 
 [node name="WorldUI" type="VBoxContainer" parent="UI/Control"]
 anchor_right = 1.0
@@ -129,9 +141,9 @@ __meta__ = {
 
 [node name="Info" parent="UI/Control/WorldUI/HBoxContainer" instance=ExtResource( 4 )]
 visible = false
-margin_left = 842.0
+margin_left = 521.0
 margin_top = 912.0
-margin_right = 958.0
+margin_right = 637.0
 margin_bottom = 1026.0
 size_flags_horizontal = 10
 size_flags_vertical = 10
@@ -206,10 +218,11 @@ collision_mask = 51
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 pause_mode = 2
 stream = ExtResource( 7 )
+autoplay = true
 
 [connection signal="port_request" from="player" to="." method="_on_player_port_request"]
 [connection signal="gui_input" from="UI/Control" to="UI/Control" method="_on_Control_gui_input"]
-[connection signal="pressed" from="UI/Control/TouchScreenButton2" to="UI/Control" method="_on_TouchScreenButton2_pressed"]
+[connection signal="close" from="UI/Control/TradeUI" to="UI/Control" method="_on_TradeUI_close"]
 [connection signal="context_menu" from="UI/Control/WorldUI/HBoxContainer/Inventory/UIInventory" to="UI/Control" method="_on_UIInventory_context_menu"]
 [connection signal="item_activated" from="UI/Control/WorldUI/HBoxContainer/Inventory/UIInventory" to="UI/Control/WorldUI/HBoxContainer/Inventory/UIInventory" method="_on_UIInventory_item_activated"]
 [connection signal="pressed" from="UI/Control/WorldUI/PanelContainer/HBoxContainer/journal" to="UI/Control" method="_on_journal_pressed"]

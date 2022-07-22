@@ -1,0 +1,13 @@
+[gd_resource type="Resource" load_steps=3 format=2]
+
+[ext_resource path="res://src/resources/NPCData.gd" type="Script" id=1]
+[ext_resource path="res://src/npc/graphics/dude_frames.tres" type="SpriteFrames" id=2]
+
+[resource]
+script = ExtResource( 1 )
+unique_id = "merchant"
+display_name = "A merchant"
+description = "Trades goods."
+timeline = "merchant"
+animation = ExtResource( 2 )
+moves = false

@@ -6,7 +6,7 @@ func enter(args):
 	#should_fall()
 
 func update(_delta):
-	#owner.direction = Input.get_vector("move_left", "move_right", "move_up", "move_down")
+	owner.direction = Input.get_vector("move_left", "move_right", "move_up", "move_down")
 	update_state(owner.direction)
 		
 func update_state(direction):

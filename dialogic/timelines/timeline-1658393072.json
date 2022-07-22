@@ -16,7 +16,7 @@
 			"question": "What do you want?"
 		},
 		{
-			"choice": "I'm looking for a quest.",
+			"choice": "I'm looking for something to do.",
 			"condition": "",
 			"definition": "",
 			"event_id": "dialogic_011",
@@ -26,10 +26,10 @@
 			"character": "character-1658058714.json",
 			"event_id": "dialogic_001",
 			"portrait": "",
-			"text": "Hmm... yes, I might have something for you to do."
+			"text": "Hmm... yes, I might have a task for you."
 		},
 		{
-			"character": "",
+			"character": "character-1658058714.json",
 			"event_id": "dialogic_010",
 			"options": [
 
@@ -58,7 +58,7 @@
 			"character": "character-1658058714.json",
 			"event_id": "dialogic_001",
 			"portrait": "",
-			"text": "Alright get me 10 pieces of wool and come back to me."
+			"text": "Alright get me 10 pieces of balls of wool and come back to me."
 		},
 		{
 			"event_id": "dialogic_022",

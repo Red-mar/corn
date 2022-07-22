@@ -3,6 +3,7 @@ extends WorldCharacter
 
 export var unique_id := ""
 var display_name: String = ""
+var timeline := ""
 
 onready var _anim = $AnimationPlayer
 onready var _sprite = $AnimatedSprite
@@ -16,15 +17,20 @@ var original_scale = scale
 var loot_table = ["coin", "icon"]
 
 func _ready():
-	var npc_data = NpcDatabase.get_npc_data(unique_id)
+	stats = Character.new()
+	var npc_data = Database.get_npc_data(unique_id)
 	_sprite.frames = npc_data.animation
 	display_name = npc_data.display_name
 	description = npc_data.description
+	timeline = npc_data.timeline
 	_label.text = display_name
 	_anim.play("spawn")
 
-	_timer.connect("timeout", self, "_blink")
-	_timer.start()
+	if _sprite.frames.has_animation("blink"):
+		_timer.connect("timeout", self, "_blink")
+		_timer.start()
+	else:
+		_sprite.play("default")
 
 func _blink():
 	_timer.wait_time = 1
@@ -41,9 +47,9 @@ func _idle():
 	_sprite.play("idle")
 	
 
-func damage(effect_id = "damage", from = Vector2.ZERO):
+func damage(effect_id, from):
 	$movement_state._change_state("stagger", {"from": from})
-	add_effect(effect_id)
+	add_effect(effect_id, from)
 	if stats.health == 0:
 		kill()
 
@@ -74,7 +80,7 @@ func _on_AnimationPlayer_animation_finished(anim_name):
 
 
 func _on_NPC_input_event(viewport, event, shape_idx):
-	if event is InputEventMouseButton and event.button_index == 1:
+	if event is InputEventMouseButton and event.button_index == BUTTON_LEFT:
 		print("?")
 
 

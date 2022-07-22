@@ -8,6 +8,7 @@ script = ExtResource( 1 )
 unique_id = "icon"
 display_name = "Icon"
 description = "Placeholder Icon"
+value = 0
 stackable = false
 consumable = false
 icon = ExtResource( 2 )

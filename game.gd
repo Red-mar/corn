@@ -18,13 +18,13 @@ var current_target
 
 func _ready():
 	# TODO load from save if available
-	quests = QuestDatabase.QUESTS.duplicate(true)
+	quests = Database.QUESTS.duplicate(true)
 	
 	_ui_inventory.set_inventory(_player.inventory)
 	_rng.randomize()
 
 func spawn_item(item_id: String, position: Vector2, amount: int) -> void:
-	var item = ItemDatabase.get_item_data(item_id)
+	var item = Database.get_item_data(item_id)
 	var world_item = _world_item.instance()
 	if item.stackable:
 		world_item.amount = amount
@@ -52,9 +52,9 @@ func spawn_ray():
 func add_item_effect_to_collider(index: int) -> bool:
 	if not _player.inventory.items[index]: return false
 	var collider = spawn_ray()
-	var item = ItemDatabase.get_item_data(_player.inventory.get_id(index))
+	var item = Database.get_item_data(_player.inventory.get_id(index))
 	if collider is WorldCharacter and can_use_effect(item.effect, collider):
-		collider.add_effect(item.effect.unique_id)
+		collider.add_effect(item.effect.unique_id, item)
 		if item.consumable: _player.inventory.remove_item(index)
 		return true
 	return false
@@ -62,7 +62,7 @@ func add_item_effect_to_collider(index: int) -> bool:
 func can_use_item(index: int) -> bool:
 	if not _player.inventory.items[index]: return false
 	var collider = spawn_ray()
-	var effect = ItemDatabase.get_item_data(_player.inventory.get_id(index)).effect
+	var effect = Database.get_item_data(_player.inventory.get_id(index)).effect
 	if collider is WorldCharacter and can_use_effect(effect, collider): return true
 	return false
 
@@ -70,12 +70,12 @@ func can_use_effect(effect, collider) -> bool:
 	if not effect: return false
 	for target_effect in collider.effects.keys():
 		# not efficient?
-		var ed = EffectDatabase.get_effect_data(target_effect)
+		var ed = Database.get_effect_data(target_effect)
 		if ed.usable_effect.size() and ed.usable_effect.has(effect.unique_id): return false
 	if effect.usable_npc.size() and collider is NPC and effect.usable_npc.has(collider.unique_id): return true
 	if effect.usable_mob.size() and collider is Mob and effect.usable_mob.has(collider.unique_id): return true
 
-	return false
+	return true
 
 ### Dialogic
 
@@ -96,16 +96,31 @@ func check_item(item):
 	Dialogic.set_variable(item, _player.inventory.get_amount(item))
 
 func remove_item(item, amount):
-	var stackable = ItemDatabase.get_item_data(item).stackable
+	#TODO
+	var stackable = Database.get_item_data(item).stackable
 	for i in range(0, amount):
 		var pos = _player.inventory.get_position(item)
 		_player.inventory.remove_item(pos, int(amount))
 		if stackable: break
+		
+# -_-
+var _shop
+func open_shop(shop_id: String):
+	_shop = shop_id
+	_ui.current_dialog.disconnect("timeline_end", _ui, "_dialogue_end")
+	_ui.current_dialog.connect("timeline_end", self, "_show_shop")
+	
+func _show_shop(timeline_name):
+	$UI/Control/TradeUI.set_shop(Database.get_shop_data(_shop))
+	$UI/Control/TradeUI.set_inventory(_player.inventory)
+	$UI/Control/TradeUI.show()
 ### Dialogic end
 
 func _physics_process(_delta):
-	_ui_info.update_position_label(_player.position)
-	_ui_info.update_velocity_label(_player.velocity)
+	_ui_info.update_strength_label(_player.stats.strength)
+	_ui_info.update_intellect_label(_player.stats.intellect)
+	_ui_info.update_dexterity_label(_player.stats.dexterity)
+	_ui_info.update_renown_label(_player.stats.renown)
 	_ui_info.update_state_label(_player.state.current_state.name)
 	_ui_info.update_health_label(_player.stats.health, _player.stats.stamina * 10)
 

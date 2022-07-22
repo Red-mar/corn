@@ -20,6 +20,12 @@
 			"name": "coin",
 			"type": 0,
 			"value": "false"
+		},
+		{
+			"id": "1658497372-787",
+			"name": "ball_of_wool",
+			"type": 0,
+			"value": "0"
 		}
 	]
 }

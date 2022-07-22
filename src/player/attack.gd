@@ -1,5 +1,7 @@
 extends "res://src/state/state.gd"
 
+onready var jab = preload("res://Jab.tscn")
+
 var shotted = false
 var held = true
 
@@ -9,14 +11,20 @@ func enter(args):
 	if owner.animated_sprite.frame == 3:
 		owner.animated_sprite.frame = 0
 	
+
+	
 	owner.animated_sprite.play("attack")
 
 
-func update(_delta):
 
+func update(_delta):
 	if not shotted and owner.animated_sprite.frame == 3:
-		owner.shoot()
+		#owner.shoot()
 		shotted = true
+		var j = jab.instance()
+		owner.add_child(j)
+		var collider = j.hit(Vector2(210, 0))
+		if collider: collider.damage("basic_jab", owner)
 
 	
 func handle_input(event):

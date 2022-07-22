@@ -5,6 +5,8 @@ export var unique_id := ""
 export var display_name := ""
 export var description := ""
 
+export var renown := 1
+
 enum QuestState {
 	NOT_STARTED,
 	STARTED,

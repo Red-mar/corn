@@ -15,9 +15,13 @@ onready var invincibility_timer = $invincibility_timer
 onready var animation = $AnimationPlayer
 onready var camera = $Camera2D
 onready var audio = $AudioStreamPlayer2D
+onready var fx_pos = $FXPos
 
 var invincible = false
 var original_scale = scale
+
+func _ready():
+	stats = Character.new()
 
 ### climibng
 onready var area = owner.get_node("level")
@@ -71,7 +75,7 @@ func stagger() -> void:
 	invincible = true
 	invincibility_timer.start()
 	
-	add_effect("damage")
+	add_effect("damage", self)
 	
 	state._change_state("stagger")
 	animation.play("stagger")

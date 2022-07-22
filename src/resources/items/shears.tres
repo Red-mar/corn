@@ -17,6 +17,7 @@ script = ExtResource( 1 )
 unique_id = "shears"
 display_name = "Shears"
 description = "I could shear a sheep with this."
+value = 1
 stackable = false
 consumable = false
 icon = ExtResource( 2 )

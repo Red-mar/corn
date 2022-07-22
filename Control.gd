@@ -30,9 +30,8 @@ func spawn_context_menu(pos: Vector2, object):
 	add_child(m)
 
 	if current_object is ItemData:
-		m.add_item("Use", popupIds.USE)
 		m.add_item("Drop", popupIds.DROP)
-	if current_object is ItemData and current_object.effect:
+	if current_object is ItemData and current_object.effect and owner.can_use_item(current_object.position):
 		m.add_item("Consume", popupIds.CONSUME)
 		
 	if current_object is NPC:
@@ -48,6 +47,15 @@ func spawn_context_menu(pos: Vector2, object):
 
 	m.popup(Rect2(pos, m.rect_size))
 	
+func _talk(timeline: String):
+	get_tree().paused = true
+	world_ui.hide()
+	var new_dialog = Dialogic.start(timeline)
+	current_dialog = new_dialog
+	dialogue_ui.show()
+	add_child(new_dialog)
+	new_dialog.connect("timeline_end", self, "_dialogue_end")
+	
 func _id_pressed(index: int):
 	if index == popupIds.EXAMINE:
 		var p = PopupPanel.new()
@@ -58,15 +66,7 @@ func _id_pressed(index: int):
 		p.popup(Rect2(get_local_mouse_position(), p.rect_size))
 		p.connect("popup_hide", p, "queue_free")
 	elif index == popupIds.TALK:
-		get_tree().paused = true
-		world_ui.hide()
-		var new_dialog = Dialogic.start('my_timeline')
-		current_dialog = new_dialog
-		dialogue_ui.show()
-		add_child(new_dialog)
-		new_dialog.connect("timeline_end", self, "_dialogue_end")
-
-		pass
+		_talk(current_object.timeline)
 	elif index == popupIds.DROP:
 		owner.spawn_item(
 			current_object.unique_id,
@@ -75,6 +75,7 @@ func _id_pressed(index: int):
 			)
 		owner._player.inventory.remove_item(current_object.position)
 	elif index == popupIds.CONSUME:
+		if not owner.can_use_item(current_object.position): return
 		if current_object.consumable:
 			owner._player.inventory.remove_item(current_object.position)
 		var effect = owner._player._effect_scene.instance()
@@ -99,7 +100,11 @@ func _dialogue_end(timeline_name):
 	dialogue_ui.hide()
 
 func _on_Control_gui_input(event):
-	if event is InputEventMouseButton and event.button_index == 2:
+	if event is InputEventMouseButton and event.button_index == BUTTON_LEFT:
+		var collider = owner.spawn_ray()
+		if collider is NPC:
+			_talk(collider.timeline)
+	if event is InputEventMouseButton and event.button_index == BUTTON_RIGHT:
 		var collider = owner.spawn_ray()
 		if collider:
 			spawn_context_menu(event.position, collider)
@@ -113,3 +118,10 @@ func _on_journal_pressed():
 
 func _on_TouchScreenButton2_pressed():
 	pass
+
+func _on_TradeUI_close():
+	get_tree().paused = false
+	world_ui.show()
+	dialogue_ui.hide()
+	$TradeUI.hide()
+
